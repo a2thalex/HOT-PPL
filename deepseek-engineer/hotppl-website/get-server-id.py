@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""
+Help get Discord server ID for HOT PPL
+"""
+
+print("🛸 HOT PPL Discord Server Setup")
+print("=" * 40)
+print()
+print("You created a Discord server with invite: https://discord.gg/ZjzTK8tJ")
+print()
+print("📋 To get your Server ID:")
+print("1. Open Discord (desktop app or web)")
+print("2. Go to User Settings (gear icon)")
+print("3. Go to Advanced settings")
+print("4. Enable 'Developer Mode'")
+print("5. Right-click your HOT PPL server name")
+print("6. Click 'Copy Server ID'")
+print()
+print("🔢 The Server ID will be a long number like: 1234567890123456789")
+print()
+print("Once you have the Server ID, I'll:")
+print("✅ Update the configuration")
+print("✅ Invite the bot to your server") 
+print("✅ Set up all channels and roles")
+print("✅ Deploy the Discord integration")
+print("✅ Connect it to hotppl.io")
+print()
+print("🚀 Your Discord-powered HOT PPL community will be live!")
+print()
+print("What's your Discord Server ID?")

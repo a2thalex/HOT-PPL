@@ -1,0 +1,87 @@
+runtime: python39
+
+# Main application entry point
+entrypoint: gunicorn -b :$PORT main:app
+
+# Static file handlers for HOT PPL website
+handlers:
+# API routes (handled by Flask app)
+- url: /api/.*
+  script: auto
+  secure: always
+
+# Health check
+- url: /health
+  script: auto
+  secure: always
+# Serve static assets (images, videos, etc.)
+- url: /assets
+  static_dir: public/assets
+  secure: always
+  expiration: "7d"
+
+# Serve CSS, JS, and other static files
+- url: /(.+\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|mp4|mov|avi))$
+  static_files: public/\1
+  upload: public/(.+\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|mp4|mov|avi))$
+  secure: always
+  expiration: "7d"
+
+# Serve specific HTML pages with clean URLs
+- url: /scenes
+  static_files: public/scenes.html
+  upload: public/scenes.html
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=300"
+
+- url: /create
+  static_files: public/create.html
+  upload: public/create.html
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=300"
+
+- url: /submit
+  static_files: public/submit.html
+  upload: public/submit.html
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=300"
+
+- url: /confirmation
+  static_files: public/confirmation.html
+  upload: public/confirmation.html
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=300"
+
+# Serve index.html for root and any other routes
+- url: /.*
+  static_files: public/index.html
+  upload: public/index.html
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=300"
+    X-Frame-Options: "DENY"
+    X-Content-Type-Options: "nosniff"
+    Referrer-Policy: "strict-origin-when-cross-origin"
+
+# Security and performance settings
+automatic_scaling:
+  min_instances: 0
+  max_instances: 10
+  target_cpu_utilization: 0.6
+
+# Environment variables
+env_variables:
+  WEBSITE_NAME: "HOT PPL"
+  ENVIRONMENT: "production"
+  DISCORD_BOT_TOKEN: "YOUR_DISCORD_BOT_TOKEN_HERE"
+  DISCORD_GUILD_ID: "1386054137094864906"
+  DISCORD_CLIENT_ID: "1386047232410910860"
+  SUBMISSION_CHANNEL_ID: "1386065828956340344"
+  VOTING_CHANNEL_ID: "1386065830193922119"
+  LEADERBOARD_CHANNEL_ID: "1386065835243864244"
+  DISCORD_WEBHOOK_URL: "https://discord.com/api/webhooks/1387220873005764719/QynDJckZjYMSsqTgj9CUhTXUZb27kP8kNz0rQdB-XY6_z7patJPRFy8-MhuqHYA_Ob4k"
+  FLASK_SECRET_KEY: "hotppl_super_secret_key_2025"

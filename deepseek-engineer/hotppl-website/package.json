@@ -1,0 +1,33 @@
+{
+  "name": "hotppl-website",
+  "version": "1.0.0",
+  "description": "HOT PPL - Where are all the hot people? Music video creation platform.",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "firebase serve --only hosting",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "firebase deploy --only hosting",
+    "deploy:preview": "firebase hosting:channel:deploy preview",
+    "logs": "firebase functions:log",
+    "setup": "firebase init hosting"
+  },
+  "keywords": [
+    "music-video",
+    "creative-platform",
+    "user-generated-content",
+    "hotppl"
+  ],
+  "author": "HOT PPL Team",
+  "license": "MIT",
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hotppl/website.git"
+  },
+  "homepage": "https://hotppl.io"
+}

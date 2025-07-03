@@ -1,0 +1,20 @@
+# HOT PPL Assets Placeholder
+# Replace these placeholder files with actual content:
+
+# Images needed:
+- placeholder.jpg (video thumbnail)
+- minilambobae.jpg (character photo)
+- becca.jpg (character photo)
+- jenny.jpg (character photo)
+- scene_arrival.jpg (scene thumbnail)
+- scene_dj.jpg (scene thumbnail)
+- scene_tracksuit.jpg (scene thumbnail)
+- scene_siri.jpg (scene thumbnail)
+- scene_judgment.jpg (scene thumbnail)
+- inspiration1.jpg (gallery image)
+- inspiration2.jpg (gallery image)
+- inspiration3.jpg (gallery image)
+- inspiration4.jpg (gallery image)
+
+# Video needed:
+- video-preview.mp4 (main preview video)

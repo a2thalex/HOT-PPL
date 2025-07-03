@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOT PPL - Where are all the hot people?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Badass Styles */
+        :root {
+            --neon-pink: #ff0080;
+            --neon-blue: #00d4ff;
+            --neon-green: #00ff88;
+            --neon-purple: #8000ff;
+            --neon-orange: #ff4000;
+            --dark-bg: #000000;
+            --darker-bg: #0a0a0a;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #ffffff;
+            --text-dim: #b0b0b0;
+            --gradient-1: linear-gradient(135deg, #ff0080, #8000ff);
+            --gradient-2: linear-gradient(135deg, #00d4ff, #00ff88);
+            --gradient-3: linear-gradient(135deg, #ff4000, #ff0080);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(128, 0, 255, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            pointer-events: none;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10px, 10px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+
+        /* Advanced Neon Effects */
+        .neon-text {
+            text-shadow:
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor; }
+            to { text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor, 0 0 80px currentColor; }
+        }
+
+        .neon-border {
+            border: 2px solid currentColor;
+            box-shadow:
+                0 0 10px currentColor,
+                inset 0 0 10px currentColor,
+                0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Modern Badass Buttons */
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow:
+                0 0 20px rgba(255, 0, 128, 0.5),
+                0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow:
+                0 0 30px rgba(255, 0, 128, 0.8),
+                0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        /* Epic Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at center, rgba(255, 0, 128, 0.1) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,0,128,0.03)" points="500,50 950,300 950,700 500,950 50,700 50,300"/><polygon fill="rgba(0,212,255,0.03)" points="500,150 850,350 850,650 500,850 150,650 150,350"/></svg>');
+            animation: heroPattern 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heroPattern {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(360deg) scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            margin-bottom: 30px;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(2px);
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            color: var(--text-dim);
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem !important;
+            margin-bottom: 50px !important;
+            color: var(--neon-blue) !important;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .age-badge {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: var(--dark-bg);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            box-shadow:
+                0 0 20px rgba(0, 255, 136, 0.5),
+                0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 136, 0.8); }
+        }
+        
+        /* Epic Video Preview Section */
+        .video-preview {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 60px;
+            margin-top: -120px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: sectionFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes sectionFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 40px;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .character-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .character-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .character-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 0, 128, 0.3);
+        }
+
+        .character-card img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: contain;
+            object-position: center center;
+            margin-bottom: 25px;
+            border: 4px solid transparent;
+            background: var(--gradient-1);
+            background-clip: padding-box;
+            box-shadow:
+                0 0 30px rgba(255, 0, 128, 0.4),
+                0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+            display: block;
+            background-color: rgba(255, 0, 128, 0.1);
+            transform: scale(1.1);
+        }
+
+        .character-card img:not([src]),
+        .character-card img[src=""],
+        .character-card img[src*="placeholder"] {
+            background: var(--gradient-1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .character-card img:not([src])::before,
+        .character-card img[src=""]::before,
+        .character-card img[onerror]::before {
+            content: "👽";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: white;
+            z-index: 2;
+        }
+
+        /* Image loading and error states */
+        .character-card img {
+            background-color: rgba(255, 0, 128, 0.1);
+        }
+
+        .character-card img:not([complete="true"]) {
+            background-image: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+            animation: loading-shimmer 1.5s infinite linear;
+        }
+
+        @keyframes loading-shimmer {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
+        /* Ensure images maintain aspect ratio on all devices */
+        @media (max-width: 480px) {
+            .character-card img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .character-card img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        .character-card:hover img {
+            transform: scale(1.15);
+            box-shadow:
+                0 0 40px rgba(255, 0, 128, 0.7),
+                0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .character-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--neon-pink);
+            letter-spacing: 1px;
+        }
+
+        .character-card p {
+            font-size: 1rem;
+            color: var(--text-dim);
+            font-weight: 400;
+            margin: 0;
+        }
+        
+        .scene-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .scene-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 25px;
+            border-left: 4px solid var(--neon-blue);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-2);
+            transition: width 0.3s ease;
+        }
+
+        .scene-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .scene-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .scene-card h4 {
+            color: var(--neon-blue);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            text-align: center;
+        }
+        
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--neon-green);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            counter-reset: step;
+        }
+        
+        .step-card {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+        
+        .step-card::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--neon-pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-pink);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 80px 60px;
+            margin: 60px 0;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .challenge-info {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .challenge-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .challenge-card i {
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .challenge-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--neon-green);
+        }
+
+        .challenge-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        /* Two-Column How It Works Section */
+        .how-it-works-main {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 80px 60px;
+            margin: 60px 0;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .how-it-works-columns {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 60px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .how-it-works-left,
+        .how-it-works-right {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--neon-green);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .step-content h4 {
+            color: var(--neon-green);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .challenge-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(255, 0, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .challenge-feature:hover {
+            transform: translateY(-3px);
+            border-color: var(--neon-pink);
+            box-shadow: 0 8px 25px rgba(255, 0, 255, 0.3);
+        }
+
+        .challenge-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--neon-pink);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+        }
+
+        .challenge-content h4 {
+            color: var(--neon-pink);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .challenge-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .dividing-line {
+            width: 2px;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                var(--neon-blue) 20%,
+                var(--neon-green) 50%,
+                var(--neon-pink) 80%,
+                transparent 100%);
+            border-radius: 1px;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .dividing-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neon-green);
+        }
+        
+        .discord-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 20px;
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        
+        .discord-link i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        /* Epic Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: clamp(2rem, 6vw, 3.5rem);
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+
+            .video-preview {
+                padding: 30px 20px;
+                margin-top: -80px;
+            }
+
+            .character-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 400px;
+            }
+
+            .character-card {
+                min-height: 280px;
+                padding: 25px 20px;
+            }
+
+            .character-card img {
+                width: 140px;
+                height: 140px;
+                max-width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+                object-fit: cover;
+                object-position: center top;
+            }
+
+            .character-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 15px 25px;
+                font-size: 12px;
+            }
+
+            .age-badge {
+                top: 15px;
+                right: 15px;
+                padding: 6px 15px;
+                font-size: 0.75rem;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .how-it-works-main {
+                padding: 40px 20px;
+                margin: 40px 0;
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .challenge-card {
+                padding: 25px 15px;
+            }
+
+            .how-it-works-main {
+                padding: 40px 20px;
+                margin: 40px 0;
+            }
+
+            .how-it-works-columns {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .dividing-line {
+                display: none;
+            }
+
+            .step-item,
+            .challenge-feature {
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .step-number,
+            .challenge-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Ultra-wide screens */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1400px;
+            }
+
+            .hero h1 {
+                font-size: 6rem;
+            }
+
+            .character-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                max-width: 1600px;
+            }
+
+            .character-card {
+                min-height: 380px;
+            }
+
+            .character-card img {
+                width: 200px;
+                height: 200px;
+                max-width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+                object-fit: cover;
+                object-position: center top;
+            }
+
+            .character-card h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Discord integration styles */
+        .perk-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .perk-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-pink);
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.3);
+        }
+
+        .perk-card i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .discord-member-count {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--neon-green);
+            margin-top: 5px;
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .neon-text {
+                text-shadow:
+                    0 0 2px currentColor,
+                    0 0 5px currentColor,
+                    0 0 10px currentColor,
+                    0 0 20px currentColor,
+                    0 0 40px currentColor;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="age-badge">18+ ONLY</span>
+            <div class="hero-content">
+                <h1 class="neon-text">WHERE THE F*CK ARE ALL THE HOT PPL?</h1>
+                <p class="hero-subtitle">The ultimate face-swap challenge. Recreate iconic scenes from our music video by swapping your face with our characters.</p>
+
+                <div class="hero-buttons">
+                    <a href="/submit.html" class="btn btn-primary">
+                        <i class="fas fa-video"></i>
+                        START CREATING
+                    </a>
+                    <a href="#how-it-works-main" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        HOW IT WORKS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section - Two Columns -->
+    <section id="how-it-works-main" class="how-it-works-main">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 60px; color: var(--neon-green); font-size: 3rem;">HOW IT WORKS</h2>
+
+            <div class="how-it-works-columns">
+                <!-- Left Column: Steps -->
+                <div class="how-it-works-left">
+                    <h3 style="color: var(--neon-blue); margin-bottom: 30px; text-align: center;">🎬 CREATE YOUR SCENE</h3>
+
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Choose Your Character</h4>
+                            <p>Pick any character from our cast - Minilambobae, Becca, Jenny, Tracksuit Guy, Discount Diplo, Mafia Guy, or Finance Bro.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Face Swap & Create</h4>
+                            <p>Use AI face-swapping tools, makeup, costumes, or whatever you have to become the character. Get creative!</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Recreate the Scene</h4>
+                            <p>Film yourself performing one of the iconic scenes from our music video. Make it your own version!</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Submit & Compete</h4>
+                            <p>Upload your creation and let the community vote. Daily challenges mean fresh opportunities to win!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dividing Line -->
+                <div class="dividing-line"></div>
+
+                <!-- Right Column: Challenges & Prizes -->
+                <div class="how-it-works-right">
+                    <h3 style="color: var(--neon-pink); margin-bottom: 30px; text-align: center;">🏆 DAILY CHALLENGES & PRIZES</h3>
+
+                    <div class="challenge-feature">
+                        <div class="challenge-icon">📅</div>
+                        <div class="challenge-content">
+                            <h4>Daily Scene Challenges</h4>
+                            <p>New featured scenes every day with special voting periods and bonus prizes.</p>
+                        </div>
+                    </div>
+
+                    <div class="challenge-feature">
+                        <div class="challenge-icon">👑</div>
+                        <div class="challenge-content">
+                            <h4>Weekly Winners</h4>
+                            <p>Top creators each week get exclusive prizes and featured placement.</p>
+                        </div>
+                    </div>
+
+                    <div class="challenge-feature">
+                        <div class="challenge-icon">🔥</div>
+                        <div class="challenge-content">
+                            <h4>Community Choice</h4>
+                            <p>Discord community votes with 🔥 reactions. Most votes win!</p>
+                        </div>
+                    </div>
+
+                    <div class="challenge-feature">
+                        <div class="challenge-icon">🎯</div>
+                        <div class="challenge-content">
+                            <h4>Instant Fame</h4>
+                            <p>Best submissions get featured in the final music video and social media!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Preview Section -->
+    <section class="video-preview">
+        <div class="container">
+            <div class="video-container">
+                <video controls poster="assets/placeholder.jpg">
+                    <source src="assets/video-preview.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--neon-blue);">MEET THE CHARACTERS</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <img src="assets/minilambobae.jpg"
+                         alt="Minilambobae - Lead Alien"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='👽';">
+                    <h3>Minilambobae</h3>
+                    <p>Lead Alien</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/becca.jpg"
+                         alt="Becca - Alien Tech Expert"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='👽';">
+                    <h3>Becca</h3>
+                    <p>Alien Tech Expert</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/jenny.jpg"
+                         alt="Jenny - Alien Fashionista"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='👽';">
+                    <h3>Jenny</h3>
+                    <p>Alien Fashionista</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/tracksuit_guy.jpg"
+                         alt="Tracksuit Guy - The Unwanted Encounter"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='🧥';">
+                    <h3>Tracksuit Guy</h3>
+                    <p>The Unwanted Encounter</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/discount_diplo.jpg"
+                         alt="Discount Diplo - The Disappointing DJ"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='🎧';">
+                    <h3>Discount Diplo</h3>
+                    <p>The Disappointing DJ</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/mafia_guy.jpg"
+                         alt="Mafia Guy - The Intimidating Presence"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='🕴️';">
+                    <h3>Mafia Guy</h3>
+                    <p>The Intimidating Presence</p>
+                </div>
+                <div class="character-card">
+                    <img src="assets/finance_bro.jpg"
+                         alt="Finance Bro - The Wall Street Wannabe"
+                         loading="lazy"
+                         onerror="this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='💼';">
+                    <h3>Finance Bro</h3>
+                    <p>The Wall Street Wannabe</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Scenes Section -->
+    <section class="video-preview">
+        <div class="container">
+            <h2 style="text-align: center; margin: 40px 0 30px; color: var(--neon-green);">KEY SCENES</h2>
+            <div class="scene-breakdown">
+                <div class="scene-card">
+                    <h4>THE ARRIVAL</h4>
+                    <p>"Wait, let's think. Should we stay here, get a drink?"</p>
+                    <p class="scene-duration">Duration: 15-30 seconds</p>
+                </div>
+                <div class="scene-card">
+                    <h4>DJ REVEAL</h4>
+                    <p>"What the f*ck is the DJ doing? Even he's not hot"</p>
+                    <p class="scene-duration">Duration: 15-30 seconds</p>
+                </div>
+                <div class="scene-card">
+                    <h4>TRACKSUIT ENCOUNTER</h4>
+                    <p>"You know I look way too cute to be standing here with a guy in a tracksuit"</p>
+                    <p class="scene-duration">Duration: 15-30 seconds</p>
+                </div>
+                <div class="scene-card">
+                    <h4>SIRI CONSULTATION</h4>
+                    <p>"Hey Siri, where the f*ck are all the hot people?"</p>
+                    <p class="scene-duration">Duration: 15-30 seconds</p>
+                </div>
+                <div class="scene-card">
+                    <h4>FINAL JUDGMENT</h4>
+                    <p>"Not you, not you, and definitely not you"</p>
+                    <p class="scene-duration">Duration: 15-30 seconds</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <a href="/scenes" class="btn btn-primary" style="font-size: 1.5rem; padding: 20px 50px;">START CREATING</a>
+            <div style="margin-top: 30px;">
+                <a href="https://discord.gg/hotppl" class="discord-link" target="_blank">
+                    <i class="fab fa-discord"></i> Join the Creator Community
+                    <span class="discord-member-count">Loading...</span>
+                </a>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HOT PPL. 18+ ONLY. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Epic Particle System
+        class ParticleSystem {
+            constructor() {
+                this.canvas = document.createElement('canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0 };
+
+                this.canvas.style.position = 'fixed';
+                this.canvas.style.top = '0';
+                this.canvas.style.left = '0';
+                this.canvas.style.width = '100%';
+                this.canvas.style.height = '100%';
+                this.canvas.style.pointerEvents = 'none';
+                this.canvas.style.zIndex = '1';
+
+                document.getElementById('particles').appendChild(this.canvas);
+
+                this.resize();
+                this.createParticles();
+                this.animate();
+
+                window.addEventListener('resize', () => this.resize());
+                document.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            createParticles() {
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 2 + 1,
+                        color: ['#ff0080', '#00d4ff', '#8000ff', '#00ff88'][Math.floor(Math.random() * 4)],
+                        alpha: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.particles.forEach((particle, index) => {
+                    // Update position
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+
+                    // Mouse interaction
+                    const dx = this.mouse.x - particle.x;
+                    const dy = this.mouse.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        particle.vx += dx * 0.0001;
+                        particle.vy += dy * 0.0001;
+                    }
+
+                    // Boundary check
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+
+                    // Draw particle
+                    this.ctx.save();
+                    this.ctx.globalAlpha = particle.alpha;
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.shadowBlur = 10;
+                    this.ctx.shadowColor = particle.color;
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    this.ctx.restore();
+
+                    // Connect nearby particles
+                    for (let j = index + 1; j < this.particles.length; j++) {
+                        const other = this.particles[j];
+                        const dx = particle.x - other.x;
+                        const dy = particle.y - other.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            this.ctx.save();
+                            this.ctx.globalAlpha = (100 - distance) / 100 * 0.2;
+                            this.ctx.strokeStyle = particle.color;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(particle.x, particle.y);
+                            this.ctx.lineTo(other.x, other.y);
+                            this.ctx.stroke();
+                            this.ctx.restore();
+                        }
+                    }
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Enhanced age gate with style
+        function showAgeGate() {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Orbitron', monospace;
+            `;
+
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                background: linear-gradient(135deg, #ff0080, #8000ff);
+                padding: 40px;
+                border-radius: 20px;
+                text-align: center;
+                color: white;
+                box-shadow: 0 0 50px rgba(255, 0, 128, 0.5);
+                animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            `;
+
+            modal.innerHTML = `
+                <h2 style="margin-bottom: 20px; font-size: 2rem;">⚠️ AGE VERIFICATION</h2>
+                <p style="margin-bottom: 30px; font-size: 1.2rem;">This site contains adult content.<br>Are you 18 or older?</p>
+                <button id="ageYes" style="margin: 0 10px; padding: 15px 30px; background: #00ff88; color: black; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'Orbitron', monospace;">YES, I'M 18+</button>
+                <button id="ageNo" style="margin: 0 10px; padding: 15px 30px; background: #ff4000; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'Orbitron', monospace;">NO, TAKE ME AWAY</button>
+            `;
+
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+
+            document.getElementById('ageYes').onclick = () => {
+                localStorage.setItem('ageVerified', 'true');
+                overlay.remove();
+                initializeWebsite();
+            };
+
+            document.getElementById('ageNo').onclick = () => {
+                window.location.href = 'https://www.google.com';
+            };
+        }
+
+        function initializeWebsite() {
+            // Initialize particle system
+            new ParticleSystem();
+
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('section, .character-card, .scene-card, .step-card').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add button hover effects
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add CSS animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes modalPop {
+                    0% { transform: scale(0.5) rotate(10deg); opacity: 0; }
+                    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+                }
+
+                @keyframes slideInUp {
+                    0% { transform: translateY(50px); opacity: 0; }
+                    100% { transform: translateY(0); opacity: 1; }
+                }
+
+                .hero-buttons {
+                    margin-top: 20px;
+                }
+
+                .btn i {
+                    margin-right: 10px;
+                    animation: iconBounce 2s ease-in-out infinite;
+                }
+
+                @keyframes iconBounce {
+                    0%, 100% { transform: translateX(0); }
+                    50% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            const ageVerified = localStorage.getItem('ageVerified');
+
+            if (!ageVerified) {
+                showAgeGate();
+            } else {
+                initializeWebsite();
+            }
+        });
+    </script>
+
+    <!-- Discord Integration -->
+    <script src="discord-integration.js"></script>
+
+    <!-- Real-Time Sync Engine -->
+    <script src="realtime-client.js"></script>
+
+    <!-- Live Data Displays -->
+    <div class="live-dashboard" style="position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 10px; color: var(--neon-green); font-size: 0.9rem; z-index: 1000;">
+        <div class="connection-status">🟡 Connecting...</div>
+        <div class="live-stats">
+            <div>👥 Active: <span class="stat-active-users">0</span></div>
+            <div>🎬 Submissions: <span class="stat-total-submissions">0</span></div>
+            <div>🔥 Votes: <span class="stat-total-votes">0</span></div>
+        </div>
+        <div class="connection-quality" style="font-size: 0.8rem; opacity: 0.7;"></div>
+    </div>
+</body>
+</html>

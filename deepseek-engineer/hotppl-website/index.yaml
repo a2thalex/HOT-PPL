@@ -1,0 +1,25 @@
+indexes:
+
+# Index for submissions ordered by vote count and submission time
+- kind: Submission
+  properties:
+  - name: status
+  - name: vote_count
+    direction: desc
+  - name: submission_time
+    direction: desc
+
+# Index for leaderboard (same as above but explicit)
+- kind: Submission
+  properties:
+  - name: status
+  - name: vote_count
+    direction: desc
+  - name: submission_time
+    direction: asc
+
+# Index for votes by submission and voter
+- kind: Vote
+  properties:
+  - name: submission_id
+  - name: voter_id

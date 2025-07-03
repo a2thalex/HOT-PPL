@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Creation - HOT PPL</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reuse base styles */
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0a12;
+            --card-bg: rgba(20, 20, 30, 0.7);
+            --text-light: #ffffff;
+            --text-dim: #cccccc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            background-image: radial-gradient(circle at 20% 30%, rgba(255, 0, 255, 0.1) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.1) 0%, transparent 40%);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 30px 0 20px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--neon-pink);
+        }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+        
+        .progress-step {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--neon-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .step-active .step-number {
+            background: var(--neon-green);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+        
+        .upload-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 2px dashed var(--neon-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .upload-section.dragover {
+            border-color: var(--neon-green);
+            background: rgba(57, 255, 20, 0.1);
+        }
+        
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+        }
+        
+        .upload-text {
+            margin-bottom: 20px;
+        }
+        
+        .browse-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--neon-blue);
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .browse-btn:hover {
+            background: var(--neon-green);
+            transform: scale(1.05);
+        }
+        
+        .file-info {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .file-info.show {
+            display: block;
+        }
+        
+        .progress-container {
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar-inner {
+            height: 100%;
+            background: var(--neon-green);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .form-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .form-column {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--neon-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .legal-agreement {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .submit-btn {
+            padding: 15px 50px;
+            background: var(--neon-green);
+            color: black;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: var(--neon-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .draft-btn {
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--text-dim);
+            border: 1px solid var(--text-dim);
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .draft-btn:hover {
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .form-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .submit-btn, .draft-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="page-title">Submit Your Creation</h1>
+            <div class="progress-bar">
+                <div class="progress-step">
+                    <div class="step-number">1</div>
+                    <div>Choose Scene</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">2</div>
+                    <div>Create</div>
+                </div>
+                <div class="progress-step step-active">
+                    <div class="step-number">3</div>
+                    <div>Submit</div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section" id="dropArea">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <h2 class="upload-text">Drop your video here</h2>
+                <p style="margin-bottom: 20px;">Or</p>
+                <button class="browse-btn" id="browseBtn">Click to browse files</button>
+                <input type="file" id="fileInput" accept="video/mp4,video/mov,video/avi" style="display: none;">
+                
+                <div class="file-info" id="fileInfo">
+                    <p><strong>File:</strong> <span id="fileName"></span></p>
+                    <p><strong>Size:</strong> <span id="fileSize"></span></p>
+                    <p><strong>Duration:</strong> <span id="fileDuration"></span></p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar-inner" id="progressBar"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Form Sections -->
+            <div class="form-section">
+                <!-- Creator Information -->
+                <div class="form-column">
+                    <h2 style="color: var(--neon-pink); margin-bottom: 20px;">Creator Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="creatorName">Name/Handle</label>
+                        <input type="text" id="creatorName" class="form-control" placeholder="What should we call you?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="socialMedia">Social Media (optional)</label>
+                        <input type="text" id="socialMedia" class="form-control" placeholder="Instagram, TikTok, Twitter handles">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="For important updates only">
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="ageVerify" required>
+                        <label for="ageVerify">I confirm I am 18 or older</label>
+                    </div>
+                </div>
+                
+                <!-- Submission Details -->
+                <div class="form-column">
+                    <h2 style="color: var(--neon-blue); margin-bottom: 20px;">Submission Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="sceneSelect">Scene Selection</label>
+                        <input type="text" id="sceneSelect" class="form-control" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="creationTitle">Title (optional)</label>
+                        <input type="text" id="creationTitle" class="form-control" placeholder="Name your creation">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description (optional)</label>
+                        <textarea id="description" class="form-control" rows="3" placeholder="Tell us about your process (max 250 characters)" maxlength="250"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toolsUsed">Tools Used</label>
+                        <select id="toolsUsed" class="form-control">
+                            <option value="">Select tool category</option>
+                            <option value="ai">AI Tools</option>
+                            <option value="phone">Phone/Camera</option>
+                            <option value="art">Traditional Art</option>
+                            <option value="stopmotion">Stop Motion</option>
+                            <option value="live">Live Action</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rights & Credit -->
+            <div class="form-column">
+                <h2 style="color: var(--neon-green); margin-bottom: 20px;">Rights & Credit</h2>
+                
+                <div class="legal-agreement">
+                    <p><strong>Legal Agreement:</strong></p>
+                    <p>1. I created this content or have permission to use it</p>
+                    <p>2. I grant hotppl.com rights to use this commercially</p>
+                    <p>3. I retain rights to use this content myself</p>
+                    <p>4. I want to be credited as: <input type="text" id="creditAs" class="form-control" style="display: inline-block; width: auto;" placeholder="[name/handle]"></p>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the terms above</label>
+                </div>
+            </div>
+            
+            <!-- Submit Buttons -->
+            <div class="btn-group">
+                <button class="submit-btn" id="submitBtn">SUBMIT MY CREATION</button>
+                <button class="draft-btn">Save Draft</button>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Get selected scene from session storage
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedScene = sessionStorage.getItem('selectedScene');
+            const sceneNames = {
+                'arrival': 'The Arrival',
+                'dj': 'DJ Reveal',
+                'tracksuit': 'Tracksuit Encounter',
+                'siri': 'Siri Consultation',
+                'judgment': 'Final Judgment'
+            };
+            
+            if (selectedScene && sceneNames[selectedScene]) {
+                document.getElementById('sceneSelect').value = sceneNames[selectedScene];
+            }
+            
+            // Setup file upload functionality
+            const dropArea = document.getElementById('dropArea');
+            const fileInput = document.getElementById('fileInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const fileDuration = document.getElementById('fileDuration');
+            const progressBar = document.getElementById('progressBar');
+            
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            // Highlight drop area when item is dragged over it
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            // Handle dropped files
+            dropArea.addEventListener('drop', handleDrop, false);
+            
+            // Browse button click
+            browseBtn.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // File input change
+            fileInput.addEventListener('change', handleFiles);
+            
+            // Submit button
+            document.getElementById('submitBtn').addEventListener('click', async function() {
+                // Basic validation
+                if (!fileInput.files.length) {
+                    alert('Please upload a video file');
+                    return;
+                }
+
+                if (!document.getElementById('ageVerify').checked) {
+                    alert('You must be 18 or older to submit');
+                    return;
+                }
+
+                if (!document.getElementById('agreeTerms').checked) {
+                    alert('You must agree to the terms');
+                    return;
+                }
+
+                // Get form data
+                const formData = {
+                    creator: document.getElementById('creatorName').value || 'Anonymous',
+                    scene: document.getElementById('sceneSelect').value,
+                    title: document.getElementById('submissionTitle').value,
+                    description: document.getElementById('description').value,
+                    tools: document.getElementById('toolsUsed').value,
+                    video_url: 'placeholder_video_url', // In real app, upload file first
+                };
+
+                // Show progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 10;
+                    progressBar.style.width = `${progress}%`;
+
+                    if (progress >= 50) {
+                        clearInterval(interval);
+                        submitToAPI(formData);
+                    }
+                }, 100);
+            });
+
+            async function submitToAPI(formData) {
+                try {
+                    const response = await fetch('/api/submissions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    // Complete progress
+                    progressBar.style.width = '100%';
+
+                    if (result.success) {
+                        // Show success message
+                        setTimeout(() => {
+                            alert('🎉 Submission successful! ' + (result.discord_posted ? 'Posted to Discord!' : ''));
+                            window.location.href = '/confirmation.html';
+                        }, 500);
+                    } else {
+                        alert('❌ Submission failed: ' + result.error);
+                        progressBar.style.width = '0%';
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    alert('❌ Network error. Please try again.');
+                    progressBar.style.width = '0%';
+                }
+            }
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            function highlight() {
+                dropArea.classList.add('dragover');
+            }
+            
+            function unhighlight() {
+                dropArea.classList.remove('dragover');
+            }
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles({ target: { files } });
+            }
+            
+            function handleFiles(e) {
+                const files = e.target.files;
+                
+                if (files.length) {
+                    const file = files[0];
+                    
+                    // Validate file type
+                    const validTypes = ['video/mp4', 'video/mov', 'video/avi'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please upload a valid video file (MP4, MOV, or AVI)');
+                        return;
+                    }
+                    
+                    // Display file info
+                    fileName.textContent = file.name;
+                    fileSize.textContent = formatFileSize(file.size);
+                    
+                    // Get duration (simulated)
+                    fileDuration.textContent = 'Calculating...';
+                    setTimeout(() => {
+                        fileDuration.textContent = '0:30'; // Simulated duration
+                    }, 1000);
+                    
+                    // Show file info
+                    fileInfo.classList.add('show');
+                }
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                else return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+        });
+    </script>
+</body>
+</html>

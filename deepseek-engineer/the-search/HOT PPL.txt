@@ -1,0 +1,780 @@
+# HOT PPL: The Search - Autonomous Development Task Setup
+
+## Program Initialization Prompt
+
+You are an autonomous game development system tasked with creating "HOT PPL: The Search," a 3D social adventure game. Use Unity 2023.3 LTS as the primary engine, integrate MCP tools for development coordination, and follow modern game development best practices.
+
+## Project Architecture Setup
+
+### Phase 1: Foundation & Infrastructure (Week 1-2)
+
+*Task 1.1: Project Initialization*
+
+PRIORITY: CRITICAL
+DEPENDENCIES: None
+ESTIMATED: 8 hours
+
+Actions:
+- Create Unity 2023.3 LTS project named "HOTPPLTheSearch"
+- Initialize Git repository with LFS for large assets
+- Set up project structure:
+  /Assets
+    /Scripts (C# gameplay code)
+    /Art (3D models, textures, animations)
+    /Audio (music, SFX, voice)
+    /Scenes (level files)
+    /Prefabs (reusable game objects)
+    /Materials (visual shaders)
+    /Resources (runtime loadable assets)
+  /Packages (Unity package dependencies)
+  /ProjectSettings (Unity configuration)
+
+MCP Integration:
+- Install MCP Unity package if available
+- Configure MCP server for project coordination
+- Set up automated build pipeline triggers
+
+Validation:
+- Project compiles without errors
+- Git repository properly tracks changes
+- MCP tools communicate with Unity
+
+
+*Task 1.2: Core Dependencies & Packages*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 1.1
+ESTIMATED: 4 hours
+
+Unity Packages to Install:
+- Input System (new Unity input handling)
+- Cinemachine (camera management)
+- Timeline (cutscenes and scripted events)
+- Universal Render Pipeline (modern rendering)
+- TextMeshPro (UI text rendering)
+- Unity Netcode for GameObjects (multiplayer)
+- ProBuilder (level prototyping)
+- Addressables (asset loading system)
+
+Third-Party Assets:
+- Post-Processing Stack v2
+- DOTween (animation tweening)
+- Mirror Networking (backup multiplayer solution)
+
+Validation:
+- All packages import successfully
+- No dependency conflicts exist
+- Sample scenes from packages work correctly
+
+
+*Task 1.3: Development Environment Configuration*
+
+PRIORITY: MEDIUM
+DEPENDENCIES: Task 1.2
+ESTIMATED: 6 hours
+
+IDE Setup:
+- Configure Visual Studio/JetBrains Rider for Unity
+- Install Unity debugging extensions
+- Set up code formatting standards (EditorConfig)
+- Configure auto-save and backup systems
+
+Version Control:
+- Create .gitignore for Unity projects
+- Set up Git LFS for binary assets
+- Configure branch protection rules
+- Establish commit message standards
+
+MCP Tool Integration:
+- Set up MCP servers for:
+  - Task management and tracking
+  - Code review automation
+  - Asset pipeline monitoring
+  - Build status reporting
+
+Validation:
+- IDE properly debugs Unity code
+- Git LFS handles large files correctly
+- MCP servers respond to Unity events
+
+
+### Phase 2: Core Systems Implementation (Week 3-6)
+
+*Task 2.1: Character Controller Foundation*
+
+PRIORITY: CRITICAL
+DEPENDENCIES: Task 1.3
+ESTIMATED: 24 hours
+
+Implementation Requirements:
+- Third-person character controller for Minilambobae
+- Smooth movement with Unity's new Input System
+- Animation state machine (Idle, Walking, Running, Talking)
+- Camera system using Cinemachine
+- Basic interaction system (press button to interact)
+
+Technical Specifications:
+- Use CharacterController component for movement
+- Implement root motion for animations
+- Create modular animation system for different outfits
+- Add ground checking and slope handling
+- Implement basic physics interactions
+
+File Structure:
+/Scripts/Character/
+  - PlayerController.cs
+  - CharacterAnimator.cs
+  - InteractionSystem.cs
+  - CameraController.cs
+
+MCP Automation:
+- Auto-generate basic movement tests
+- Monitor performance metrics during development
+- Track animation state transitions for bugs
+
+Validation:
+- Character moves smoothly in all directions
+- Camera follows without jitter
+- Animations blend properly
+- Interaction prompts appear correctly
+
+
+*Task 2.2: Vehicle System Foundation*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 2.1
+ESTIMATED: 32 hours
+
+Core Vehicle Implementation:
+- Rigidbody-based car physics using Unity's WheelCollider
+- Input handling for acceleration, braking, steering
+- Basic car models (start with simple placeholder)
+- Entry/exit system from character to vehicle
+- Camera transitions between character and driving modes
+
+Lamborghini-Specific Features:
+- High-performance handling characteristics
+- Visual customization system framework
+- Sound system integration for engine audio
+- Damage/wear system foundation
+
+Technical Requirements:
+- Create VehicleController script with modular design
+- Implement smooth camera transitions
+- Add procedural suspension and tire physics
+- Create vehicle spawning/despawning system
+
+File Structure:
+/Scripts/Vehicle/
+  - VehicleController.cs
+  - VehicleCustomization.cs
+  - VehicleAudio.cs
+  - VehicleCamera.cs
+
+MCP Automation:
+- Performance monitoring for physics calculations
+- Automated testing of vehicle entry/exit
+- Memory usage tracking for vehicle assets
+
+Validation:
+- Vehicle handles realistically
+- Smooth transitions between character/vehicle
+- Customization system applies changes correctly
+- Audio responds to player input
+
+
+*Task 2.3: Social Interaction Framework*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 2.1
+ESTIMATED: 28 hours
+
+Core Social Systems:
+- NPC interaction detection and highlighting
+- Dialogue system with branching conversations
+- Relationship tracking and progression
+- Social evaluation mechanics (style, personality, etc.)
+- Basic UI for social interactions
+
+NPC System:
+- Generic NPC controller with AI states
+- Conversation trigger system
+- Reputation/relationship database
+- Social circle membership tracking
+
+UI Implementation:
+- Dialogue interface with multiple choice options
+- Character information panels
+- Relationship status displays
+- Social evaluation feedback
+
+File Structure:
+/Scripts/Social/
+  - NPCController.cs
+  - DialogueSystem.cs
+  - RelationshipManager.cs
+  - SocialEvaluator.cs
+/Scripts/UI/
+  - DialogueUI.cs
+  - SocialUI.cs
+
+MCP Automation:
+- Generate test conversations automatically
+- Monitor dialogue tree completeness
+- Track relationship progression accuracy
+
+Validation:
+- NPCs respond to player approach
+- Dialogue trees flow logically
+- Relationships persist between sessions
+- Social evaluation provides meaningful feedback
+
+
+### Phase 3: Content & Asset Integration (Week 7-10)
+
+*Task 3.1: 3D Asset Pipeline Setup*
+
+PRIORITY: MEDIUM
+DEPENDENCIES: Task 2.2, 2.3
+ESTIMATED: 20 hours
+
+Asset Standards:
+- Establish modeling conventions for characters/vehicles
+- Set up texture compression and optimization
+- Create LOD (Level of Detail) system for performance
+- Implement asset validation tools
+
+Character Assets:
+- Import/create base character models for main trio
+- Set up character customization system
+- Implement clothing/accessory system
+- Create facial animation controls
+
+Vehicle Assets:
+- Import Lamborghini 3D models (or create legally safe alternatives)
+- Set up modular customization components
+- Implement paint/livery system
+- Add interior detail models
+
+Environment Assets:
+- Create modular building system for city
+- Design nightclub interior components
+- Build fashion district environments
+- Implement dynamic lighting system
+
+MCP Automation:
+- Automated asset optimization on import
+- LOD generation for complex models
+- Texture compression based on usage
+
+Validation:
+- All assets import without errors
+- LOD system maintains visual quality
+- Customization changes apply in real-time
+- Performance stays above 30 FPS target
+
+
+*Task 3.2: Audio System Implementation*
+
+PRIORITY: MEDIUM
+DEPENDENCIES: Task 3.1
+ESTIMATED: 16 hours
+
+Core Audio Features:
+- Music system with dynamic crossfading
+- Vehicle engine audio with realistic simulation
+- Environmental audio (crowd noise, city sounds)
+- Voice acting system for main characters
+- Sound effect library integration
+
+Technical Implementation:
+- Use Unity's Audio Mixer for dynamic audio control
+- Implement 3D spatial audio for realistic immersion
+- Create audio streaming system for large music files
+- Add audio compression and optimization
+
+Music System:
+- Dynamic playlist system for different locations
+- Crossfade between tracks based on gameplay
+- Player-controlled radio in vehicles
+- Adaptive music for social situations
+
+File Structure:
+/Scripts/Audio/
+  - AudioManager.cs
+  - MusicController.cs
+  - VehicleAudio.cs
+  - SpatialAudio.cs
+
+MCP Automation:
+- Audio asset optimization on import
+- Dynamic audio level monitoring
+- Performance impact tracking for audio systems
+
+Validation:
+- Music transitions smoothly between areas
+- Vehicle audio responds to engine state
+- 3D audio positioning works correctly
+- No audio dropouts or performance issues
+
+
+### Phase 4: Multiplayer & Networking (Week 11-14)
+
+*Task 4.1: Network Architecture Setup*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 2.1, 2.2, 2.3
+ESTIMATED: 36 hours
+
+Networking Implementation:
+- Set up Unity Netcode for GameObjects
+- Implement client-server architecture
+- Create network player synchronization
+- Add network vehicle physics
+- Build social interaction networking
+
+Core Network Features:
+- Player position and animation sync
+- Vehicle movement and customization sync
+- Shared dialogue and social events
+- Persistent world state management
+- Network optimization for 2-3 players
+
+Security & Validation:
+- Server-side validation for all player actions
+- Anti-cheat measures for social evaluation
+- Secure data transmission
+- Network lag compensation
+
+File Structure:
+/Scripts/Networking/
+  - NetworkManager.cs
+  - NetworkPlayer.cs
+  - NetworkVehicle.cs
+  - NetworkSocial.cs
+
+MCP Automation:
+- Network performance monitoring
+- Automated multiplayer testing scenarios
+- Latency and packet loss simulation
+
+Validation:
+- 3 players can join and play simultaneously
+- All interactions sync correctly across clients
+- Network performance remains stable
+- No duplication or desync issues
+
+
+*Task 4.2: Multiplayer Gameplay Features*
+
+PRIORITY: MEDIUM
+DEPENDENCIES: Task 4.1
+ESTIMATED: 24 hours
+
+Cooperative Features:
+- Shared vehicle riding system
+- Group conversation mechanics
+- Collaborative social evaluation
+- Friend-based progression bonuses
+
+Competitive Elements:
+- Style evaluation contests
+- Vehicle racing challenges
+- Social circle competition
+- Leaderboard systems
+
+Session Management:
+- Drop-in/drop-out functionality
+- Host migration for stability
+- Private lobby creation
+- Matchmaking for public games
+
+MCP Automation:
+- Automated multiplayer balance testing
+- Session stability monitoring
+- Performance impact measurement
+
+Validation:
+- Players can seamlessly join/leave games
+- All competitive features work fairly
+- Cooperative elements enhance gameplay
+- Session management prevents crashes
+
+
+### Phase 5: Progression & Customization (Week 15-18)
+
+*Task 5.1: Character Progression System*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 2.3, 4.2
+ESTIMATED: 28 hours
+
+Progression Mechanics:
+- Experience point system for three skill trees
+- Unlockable abilities and perks
+- Character customization unlocks
+- Achievement and milestone tracking
+
+Skill Trees:
+- Social Butterfly: Enhanced conversation options
+- Fashion Maven: Style detection and trendsetting
+- Street Racing: Vehicle handling and exclusive content
+
+Data Persistence:
+- Save/load system for player progress
+- Cloud save integration for cross-device play
+- Achievement synchronization
+- Progress backup and recovery
+
+File Structure:
+/Scripts/Progression/
+  - ExperienceManager.cs
+  - SkillTree.cs
+  - AchievementSystem.cs
+  - SaveSystem.cs
+
+MCP Automation:
+- Progress validation testing
+- Save/load integrity checking
+- Balance monitoring for progression rates
+
+Validation:
+- All skill trees function correctly
+- Progress saves and loads reliably
+- Achievements trigger appropriately
+- No progression-blocking bugs exist
+
+
+*Task 5.2: Vehicle Customization System*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 3.1, 5.1
+ESTIMATED: 32 hours
+
+Customization Features:
+- Real-time paint and livery system
+- Modular part replacement (wheels, spoilers, etc.)
+- Interior customization options
+- Performance modification system
+- Photo mode for showcasing vehicles
+
+Technical Implementation:
+- Shader-based paint system with metallic/matte options
+- Modular prefab system for vehicle parts
+- Performance calculation based on modifications
+- Asset streaming for customization options
+
+UI/UX Design:
+- Intuitive customization interface
+- Real-time preview system
+- Preset and custom option saving
+- Sharing system for custom designs
+
+MCP Automation:
+- Customization option validation
+- Performance impact testing
+- Asset loading optimization
+
+Validation:
+- All customization options apply correctly
+- Performance modifications affect gameplay
+- UI is intuitive and responsive
+- Custom designs save and load properly
+
+
+### Phase 6: Content Creation & World Building (Week 19-22)
+
+*Task 6.1: City Environment Design*
+
+PRIORITY: MEDIUM
+DEPENDENCIES: Task 3.1, 3.2
+ESTIMATED: 40 hours
+
+World Design:
+- Create main city hub with multiple districts
+- Design nightclub interiors with varied themes
+- Build fashion district with shops and events
+- Implement day/night cycle with dynamic lighting
+
+Technical Requirements:
+- Modular building system for efficient creation
+- Occlusion culling for performance optimization
+- Dynamic loading system for large environments
+- Weather system integration
+
+Gameplay Integration:
+- Strategic placement of social hotspots
+- Vehicle-accessible routes throughout city
+- Hidden areas for exploration rewards
+- Event locations for special activities
+
+MCP Automation:
+- Automated performance testing for each area
+- Asset usage optimization
+- Loading time monitoring
+
+Validation:
+- City feels alive and immersive
+- Performance maintains target framerate
+- All areas are accessible by vehicle
+- Social events distribute evenly across districts
+
+
+*Task 6.2: NPC Population & AI Systems*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 2.3, 6.1
+ESTIMATED: 36 hours
+
+NPC Variety:
+- Create diverse character models and personalities
+- Implement different social groups and subcultures
+- Design unique conversation patterns for each type
+- Add contextual behaviors based on location/time
+
+AI Behaviors:
+- Basic pathfinding around city environments
+- Social interaction initiation by NPCs
+- Group behavior for social circles
+- Reaction systems to player reputation
+
+Performance Optimization:
+- LOD system for distant NPCs
+- Crowd simulation for background characters
+- Smart spawning/despawning based on player location
+- Behavior state machine optimization
+
+MCP Automation:
+- NPC behavior validation testing
+- Performance impact monitoring
+- Conversation flow completeness checking
+
+Validation:
+- NPCs behave believably in all situations
+- Social interactions feel natural and varied
+- Performance remains stable with full NPC population
+- All conversation trees are accessible and bug-free
+
+
+### Phase 7: UI/UX & Polish (Week 23-26)
+
+*Task 7.1: User Interface Implementation*
+
+PRIORITY: HIGH
+DEPENDENCIES: All previous core systems
+ESTIMATED: 32 hours
+
+UI Systems:
+- Main menu with game mode selection
+- In-game HUD with minimal, stylish design
+- Social interaction interfaces
+- Vehicle customization menus
+- Progression and achievement displays
+
+UX Design Principles:
+- Consistent visual language throughout
+- Intuitive navigation and controls
+- Accessibility options (colorblind, hearing impaired)
+- Controller and keyboard/mouse support
+
+Technical Implementation:
+- Unity UI system with responsive layouts
+- Animation system for smooth transitions
+- Input validation and error handling
+- Localization framework for multiple languages
+
+MCP Automation:
+- UI responsiveness testing across resolutions
+- Accessibility compliance checking
+- Navigation flow validation
+
+Validation:
+- All UI elements scale properly across devices
+- Navigation is intuitive for new players
+- Accessibility features work correctly
+- No UI blocking or breaking bugs exist
+
+
+*Task 7.2: Audio/Visual Polish & Optimization*
+
+PRIORITY: MEDIUM
+DEPENDENCIES: Task 7.1
+ESTIMATED: 28 hours
+
+Visual Polish:
+- Post-processing pipeline for cinematic look
+- Particle effects for vehicle and social interactions
+- Dynamic lighting optimization
+- Texture and model detail refinement
+
+Audio Polish:
+- Professional audio mixing and mastering
+- Dynamic range compression for different output devices
+- Ambient audio layering for immersion
+- Voice acting integration and lip sync
+
+Performance Optimization:
+- Profiling and bottleneck identification
+- Memory usage optimization
+- GPU performance tuning
+- Loading time reduction
+
+MCP Automation:
+- Automated performance benchmarking
+- Memory leak detection
+- Visual quality consistency checking
+
+Validation:
+- Game maintains 60 FPS on target hardware
+- Audio levels are consistent and clear
+- Visual style is cohesive throughout
+- No memory leaks or performance degradation over time
+
+
+### Phase 8: Testing & Deployment (Week 27-30)
+
+*Task 8.1: Quality Assurance & Bug Fixing*
+
+PRIORITY: CRITICAL
+DEPENDENCIES: All previous tasks
+ESTIMATED: 40 hours
+
+Testing Protocols:
+- Automated unit testing for all core systems
+- Integration testing for system interactions
+- Performance testing across target hardware
+- Multiplayer stress testing
+- User acceptance testing with focus groups
+
+Bug Classification:
+- Critical: Game-breaking or save-corrupting issues
+- High: Major feature dysfunction or progression blocks
+- Medium: Minor feature issues or cosmetic problems
+- Low: Polishing opportunities and nice-to-have fixes
+
+Testing Areas:
+- Character movement and interaction
+- Vehicle physics and customization
+- Social system mechanics
+- Multiplayer functionality
+- Save/load system integrity
+
+MCP Automation:
+- Automated regression testing after each fix
+- Performance regression detection
+- Bug tracking and prioritization
+
+Validation:
+- Zero critical bugs remain
+- All high-priority bugs resolved
+- Performance targets met consistently
+- Multiplayer stability confirmed
+
+
+*Task 8.2: Build Pipeline & Distribution Setup*
+
+PRIORITY: HIGH
+DEPENDENCIES: Task 8.1
+ESTIMATED: 24 hours
+
+Build Configuration:
+- Automated build pipeline for multiple platforms
+- Asset bundling and compression optimization
+- Platform-specific optimization settings
+- Debug symbol generation for post-launch support
+
+Distribution Preparation:
+- Steam store page creation and assets
+- Achievement integration with platform APIs
+- Cloud save implementation
+- Analytics integration for post-launch monitoring
+
+Launch Readiness:
+- Day-one patch preparation
+- Support documentation creation
+- Community management tools setup
+- Marketing asset finalization
+
+MCP Automation:
+- Automated build verification
+- Distribution package validation
+- Platform compliance checking
+
+Validation:
+- Builds successfully deploy to all target platforms
+- All platform features work correctly
+- Analytics and telemetry systems function
+- Support systems are ready for player issues
+
+
+## Development Coordination & Management
+
+### MCP Server Configuration
+
+json
+{
+  "mcpServers": {
+    "unity-integration": {
+      "command": "mcp-unity-server",
+      "args": ["--project-path", "./HOTPPLTheSearch"]
+    },
+    "task-management": {
+      "command": "mcp-task-server",
+      "args": ["--board", "hotppl-development"]
+    },
+    "git-integration": {
+      "command": "mcp-git-server",
+      "args": ["--repo", "."]
+    },
+    "performance-monitoring": {
+      "command": "mcp-perf-server",
+      "args": ["--unity-project", "./HOTPPLTheSearch"]
+    }
+  }
+}
+
+
+### Autonomous Development Guidelines
+
+1. *Prioritization System*: Always complete CRITICAL tasks before HIGH, HIGH before MEDIUM
+2. *Dependency Management*: Never start a task until all dependencies are validated complete
+3. *Testing Requirements*: Each task must pass validation before marking complete
+4. *Performance Monitoring*: Continuously monitor framerate and memory usage
+5. *Version Control*: Commit working code frequently with descriptive messages
+6. *Documentation*: Generate inline code documentation automatically
+7. *Error Handling*: Implement robust error handling and user feedback systems
+
+### Success Metrics
+
+- *Code Quality*: 90%+ automated test coverage
+- *Performance*: Consistent 60 FPS on target hardware (GTX 1060/equivalent)
+- *Stability*: Zero critical bugs in final build
+- *User Experience*: Positive feedback from focus group testing
+- *Multiplayer*: Stable 3-player sessions with <100ms latency
+- *Build Success*: Automated builds pass on all target platforms
+
+### Emergency Protocols
+
+If critical issues arise:
+1. Stop current task immediately
+2. Log detailed error information
+3. Attempt automated debugging procedures
+4. Create backup of working state
+5. Report issue through MCP error handling
+6. Await human intervention if automated resolution fails
+
+## Final Validation Checklist
+
+Before considering development complete:
+- [ ] All 8 phases completed with validations passed
+- [ ] Game runs at 60 FPS on minimum spec hardware
+- [ ] Multiplayer supports 3 concurrent players stably
+- [ ] Save/load system preserves all player progress
+- [ ] All vehicle customization options work correctly
+- [ ] Social interaction system provides engaging gameplay
+- [ ] Character progression feels rewarding and balanced
+- [ ] Audio/visual polish meets AAA standards
+- [ ] Zero critical or high-priority bugs remain
+- [ ] Platform-specific features work correctly
+
+Execute this development plan autonomously, reporting progress and issues through configured MCP channels. Prioritize player experience, technical stability, and development efficiency throughout the process.
